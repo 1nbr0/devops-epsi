@@ -1,0 +1,15 @@
+{
+	"name": "devops-epsi",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "mocha tests/"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"should": "^13.2.3"
+	}
+}
