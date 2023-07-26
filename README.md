@@ -138,3 +138,84 @@ EXPOSE 50000
 #### Résultat :
 
 ![Capture d'écran du résultat](/screenshot/jenkins-docker.png)
+
+## Screenshots manipulation jenkins :
+
+### Configuration pipeline sur jenkins
+
+1. Ajout du repo github pour récupérer le fichier Jenkinsfile lors du build
+
+![Capture d'écran du résultat](/screenshot/config-pipeline.png)
+
+2. Build la pipeline
+
+![Capture d'écran du résultat](/screenshot/sortie-console-pipeline.png)
+
+3. Sortie complète de la console
+
+```
+Started by user unknown or anonymous
+Obtained Jenkinsfile from git https://github.com/1nbr0/devops-epsi
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/p1
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/1nbr0/devops-epsi
+ > git init /var/jenkins_home/workspace/p1 # timeout=10
+Fetching upstream changes from https://github.com/1nbr0/devops-epsi
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- https://github.com/1nbr0/devops-epsi +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/1nbr0/devops-epsi # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 6b9c73f843f90dcf9942eb0f3ad419d58c991952 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 6b9c73f843f90dcf9942eb0f3ad419d58c991952 # timeout=10
+Commit message: "ajout jenkinsfile"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] echo
+Exécution de l'étape de build
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Hello1)
+[Pipeline] sh
++ echo hello1
+hello1
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (sleep)
+[Pipeline] sh
++ sleep 60
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Hello2)
+[Pipeline] sh
++ echo hello2
+hello2
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+```
