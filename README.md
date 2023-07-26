@@ -135,6 +135,8 @@ EXPOSE 50000
 
 `bash docker run -p 8080:8080 -p 50000:50000 jenkins-app`
 
+6. Une fois le conteneur démarré, vous pouvez accéder à votre application Nginx sur l'adresse http://localhost:8080/
+
 #### Résultat :
 
 ![Capture d'écran du résultat](/screenshot/jenkins-docker.png)
