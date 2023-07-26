@@ -1,5 +1,9 @@
 # Construire une machine Nginx avec Docker
 
+## Travail réalisé par :
+
+- Robin TURPIN
+
 ## Prérequis
 
 - Docker
