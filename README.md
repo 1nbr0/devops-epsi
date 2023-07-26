@@ -1,4 +1,31 @@
-La commande `bash docker build -t devops-app . `
+# Construire une machine Nginx avec Docker
+
+## Prérequis
+
+- Docker
+- Une machine avec un accès à Internet
+
+## Instructions
+
+1. Créez un nouveau répertoire pour votre projet.
+2. Dans le répertoire, créez un fichier nommé `Dockerfile`.
+3. Copiez et collez le code suivant dans le fichier `Dockerfile`.
+
+```
+FROM nginx:latest
+
+COPY . /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+4. Exécutez la commande suivante pour construire l'image Docker.
+
+`bash docker build -t devops-app . `
+
+#### Résultat console :
 
 ```
 [+] Building 0.7s (7/7) FINISHED
@@ -17,13 +44,46 @@ La commande `bash docker build -t devops-app . `
  => => naming to docker.io/library/devops-app                                                                                                       0.0s
 ```
 
-Lancer le docker via cette commande `bash docker run -p 80:80 devops-app`
+5. Une fois l'image construite, vous pouvez l'exécuter en exécutant la commande suivante.
+
+`bash docker run -p 80:80 devops-app`
+
+6. Une fois le conteneur démarré, vous pouvez accéder à votre application Nginx sur l'adresse http://localhost:80/.
+
+#### Résultat :
 
 ![Capture d'écran du résultat](/screenshot/nginx-docker.png)
 
-Création d'une application Jenkins avec docker
+# Création d'une application Jenkins avec docker
+
+## Prérequis
+
+- Docker
+- Une machine avec un accès à Internet
+
+## Instructions
+
+1. Créez un nouveau répertoire pour votre projet.
+2. Dans le répertoire, créez un fichier nommé `Dockerfile`.
+3. Copiez et collez le code suivant dans le fichier `Dockerfile`.
+
+```
+FROM jenkins/jenkins
+
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
+
+RUN jenkins-plugin-cli
+
+EXPOSE 8080
+
+EXPOSE 50000
+```
+
+4. Exécutez la commande suivante pour construire l'image Docker.
 
 `bash docker build -t jenkins-app .`
+
+#### Résultat console :
 
 ```
 [+] Building 28.3s (7/7) FINISHED
@@ -71,27 +131,10 @@ Création d'une application Jenkins avec docker
  => => naming to docker.io/library/jenkins-app                                                                                          0.0s
 ```
 
-pour construire l'image :
-
-`bash docker build -t jenkins-app .`
-
-```
-[+] Building 0.6s (6/6) FINISHED
- => [internal] load .dockerignore                                                                                                       0.0s
- => => transferring context: 2B                                                                                                         0.0s
- => [internal] load build definition from Dockerfile                                                                                    0.0s
- => => transferring dockerfile: 167B                                                                                                    0.0s
- => [internal] load metadata for docker.io/jenkins/jenkins:latest                                                                       0.5s
- => [1/2] FROM docker.io/jenkins/jenkins@sha256:265b6607c75f4ca47b71375517cb5c7aa5c59b36c2496a4bbb30850375348f1f                        0.0s
- => CACHED [2/2] RUN jenkins-plugin-cli                                                                                                 0.0s
- => exporting to image                                                                                                                  0.0s
- => => exporting layers                                                                                                                 0.0s
- => => writing image sha256:a620c57aa657e723f085757fb257127b099301aa79d2faad8b03ce969edab3af                                            0.0s
- => => naming to docker.io/library/jenkins-app                                                                                          0.0s
-```
-
-Une fois l'image construite, vous pouvez l'exécuter en exécutant la commande suivante :
+5. Une fois l'image construite, vous pouvez l'exécuter en exécutant la commande suivante.
 
 `bash docker run -p 8080:8080 -p 50000:50000 jenkins-app`
+
+#### Résultat :
 
 ![Capture d'écran du résultat](/screenshot/jenkins-docker.png)
